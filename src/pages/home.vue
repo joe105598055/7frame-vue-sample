@@ -36,7 +36,6 @@
         </f7-col>
       </f7-row>
     </f7-block>
-
     <f7-block-title>Panels</f7-block-title>
     <f7-block strong>
       <f7-row>
@@ -114,13 +113,6 @@
             :value="fruit"
             :key="index"
           >{{fruit.toUpperCase()[0]+fruit.slice(1)}}</option>
-          <!-- <option value="apple" selected>Apple</option>
-          <option value="pineapple">Pineapple</option>
-          <option value="pear">Pear</option>
-          <option value="orange">Orange</option>
-          <option value="melon">Melon</option>
-          <option value="peach">Peach</option>
-          <option value="banana">Banana</option>-->
         </select>
       </f7-list-item>
     </f7-list>
@@ -137,17 +129,36 @@
         <img slot="media" :src="item.img_src" width="44">
       </f7-list-item>
     </f7-list>
+    <f7-block>
+      <label>Clicked: {{ $store.state.count }} times, count is {{ evenOrOdd }}.</label>
+      <br>
+      <f7-row>
+        <f7-col width="25">
+          <f7-button fill @click="increment">+</f7-button>
+        </f7-col>
+        <f7-col width="25">
+          <f7-button fill @click="decrement">-</f7-button>
+        </f7-col>
+        <f7-col width="25">
+          <f7-button fill @click="incrementIfOdd">Increment if odd</f7-button>
+        </f7-col>
+        <f7-col width="25">
+          <f7-button fill @click="incrementAsync">Increment async</f7-button>
+        </f7-col>
+      </f7-row>
+    </f7-block>
   </f7-page>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import test from "./test";
 var pickerDevice;
 export default {
-  props: ["hello"],
   components: {
     test
   },
+  computed: mapGetters(["evenOrOdd"]),
   data() {
     return {
       itemList: [
@@ -177,6 +188,12 @@ export default {
     };
   },
   methods: {
+    ...mapActions([
+      "increment",
+      "decrement",
+      "incrementIfOdd",
+      "incrementAsync"
+    ]),
     log() {
       console.log(pickerDevice.getValue());
       console.log(this.chooseFruit);
