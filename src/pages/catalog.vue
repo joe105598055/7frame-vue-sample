@@ -9,14 +9,26 @@
         :link="`/product/${product.id}/`"
       ></f7-list-item>
     </f7-list>
+    <f7-list simple-list>
+      <f7-list-item>
+        <span>Batman</span>
+        <f7-toggle checked @change="changeToggle"></f7-toggle>
+      </f7-list-item>
+    </f7-list>
   </f7-page>
 </template>
 <script>
 export default {
   data: function() {
     return {
-      products: this.$f7.data.products
+      products: this.$f7.data.products,
+      isChecked:null
     };
+  },
+  methods:{
+    changeToggle(el){
+      console.log(el.target.checked)
+    }
   }
 };
 </script>

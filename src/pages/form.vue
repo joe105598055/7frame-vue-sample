@@ -4,43 +4,19 @@
 
     <f7-block-title>Form Example</f7-block-title>
     <f7-list no-hairlines-md>
-      <f7-list-input
-        label="Name"
-        type="text"
-        placeholder="Your name"
-      ></f7-list-input>
+      <f7-list-input label="Name" type="text" placeholder="Your name"></f7-list-input>
 
-      <f7-list-input
-        label="E-mail"
-        type="email"
-        placeholder="E-mail"
-      ></f7-list-input>
+      <f7-list-input label="E-mail" type="email" placeholder="E-mail"></f7-list-input>
 
-      <f7-list-input
-        label="URL"
-        type="url"
-        placeholder="URL"
-      ></f7-list-input>
+      <f7-list-input label="URL" type="url" placeholder="URL"></f7-list-input>
 
-      <f7-list-input
-        label="Password"
-        type="password"
-        placeholder="Password"
-      ></f7-list-input>
+      <f7-list-input label="Password" type="password" placeholder="Password"></f7-list-input>
 
-      <f7-list-input
-        label="Phone"
-        type="tel"
-        placeholder="Phone"
-      ></f7-list-input>
+      <f7-list-input label="Phone" type="tel" placeholder="Phone"></f7-list-input>
 
-      <f7-list-input
-        label="Gender"
-        type="select"
-        >
+      <f7-list-input label="Gender" type="select">
         <option>Male</option>
         <option>Female</option>
-        
       </f7-list-input>
 
       <f7-list-input
@@ -48,33 +24,22 @@
         type="date"
         placeholder="Birth day"
         defaultValue="2014-04-30"
-        v-model="date"
+        @input="date=$event.target.value"
+        :value="date"
+        required
+        info="this is info!"
       ></f7-list-input>
 
-      <f7-list-item
-        title="Toggle"
-      >
+      <f7-list-item title="Toggle">
         <f7-toggle slot="after"></f7-toggle>
       </f7-list-item>
 
-      <f7-list-input
-        label="Range"
-        :input="false"
-      >
+      <f7-list-input label="Range" :input="false">
         <f7-range slot="input" :value="50" :min="0" :max="100" :step="1"></f7-range>
       </f7-list-input>
 
-      <f7-list-input
-        type="textarea"
-        label="Textarea"
-        placeholder="Bio"
-      ></f7-list-input>
-      <f7-list-input
-        type="textarea"
-        label="Resizable"
-        placeholder="Bio"
-        resizable
-      ></f7-list-input>
+      <f7-list-input type="textarea" label="Textarea" placeholder="Bio"></f7-list-input>
+      <f7-list-input type="textarea" label="Resizable" placeholder="Bio" resizable></f7-list-input>
     </f7-list>
 
     <f7-block-title>Buttons</f7-block-title>
@@ -115,46 +80,48 @@
 
     <f7-block-title>Checkbox group</f7-block-title>
     <f7-list>
-      <f7-list-item
-        checkbox
-        name="my-checkbox"
-        value="Books"
-        title="Books"
-      ></f7-list-item>
-      <f7-list-item
-        checkbox
-        name="my-checkbox"
-        value="Movies"
-        title="Movies"
-      ></f7-list-item>
-      <f7-list-item
-        checkbox
-        name="my-checkbox"
-        value="Food"
-        title="Food"
-      ></f7-list-item>
+      <f7-list-item checkbox name="my-checkbox" value="Books" title="Books" @change="changeList"></f7-list-item>
+      <f7-list-item checkbox name="my-checkbox" value="Movies" title="Movies" @change="changeList"></f7-list-item>
+      <f7-list-item checkbox name="my-checkbox" value="Food" title="Food" @change="changeList"></f7-list-item>
     </f7-list>
 
     <f7-block-title>Radio buttons group</f7-block-title>
     <f7-list>
-      <f7-list-item
-        radio
-        name="radio"
-        value="Books"
-        title="Books"
-      ></f7-list-item>
-      <f7-list-item
-        radio
-        name="radio"
-        value="Movies"
-        title="Movies"
-      ></f7-list-item>
-      <f7-list-item
-        radio
-        name="radio"
-        value="Food"
-        title="Food"
-      ></f7-list-item>
+      <f7-list-item radio name="radio" value="Books" title="Books"></f7-list-item>
+      <f7-list-item radio name="radio" value="Movies" title="Movies"></f7-list-item>
+      <f7-list-item radio name="radio" value="Food" title="Food"></f7-list-item>
+      <f7-block>
+        <f7-button class="col" fill color="green" @click="submit">Submit</f7-button>
+      </f7-block>
     </f7-list>
   </f7-page>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      date: null,
+      checkmodel:[]
+    };
+  },
+  methods:{
+    submit(){
+      // console.log(this.date)
+      console.log(this.checkmodel)
+    },
+    changeList(el){
+      if(el.target.checked && this.checkmodel.indexOf(el.target.value)===-1){
+        this.checkmodel.push(el.target.value)
+      }
+      if(!el.target.checked){
+        this.checkmodel.splice( this.checkmodel.indexOf(el.target.value), 1 );
+      }
+    }
+  },
+  watch: {
+    date: val => {
+      console.log("watch");
+    }
+  }
+};
+</script>

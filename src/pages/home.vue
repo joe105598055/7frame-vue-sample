@@ -190,10 +190,6 @@ export default {
     next();
   },
   mounted() {
-    this.$nextTick(() => {
-      console.log(`nextTick`);
-      console.log(this.hello);
-    });
     this.$f7ready(f7 => {
       // Call F7 APIs here
       pickerDevice = f7.picker.create({
