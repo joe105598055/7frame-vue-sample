@@ -1,6 +1,5 @@
 // Import Vue
 import Vue from 'vue';
-
 // Import Framework7
 import Framework7 from 'framework7/framework7.esm.bundle.js';
 
@@ -16,16 +15,17 @@ import '../css/app.css';
 
 // Import App Component
 import App from '../components/app.vue';
-import router from './routes'
 
 // Init Framework7-Vue Plugin
 Framework7.use(Framework7Vue)
+import store from './store'
 
 // Init App
 new Vue({
   el: '#app',
   render: (h) => h(App),
   // Register App Component
+  store,
   components: {
     app: App
   },

@@ -119,7 +119,7 @@ export default {
     }
   },
   watch: {
-    date: val => {
+    checkmodel: val => {
       console.log("watch");
     }
   }
