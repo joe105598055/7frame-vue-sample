@@ -105,7 +105,7 @@
       </ul>
     </div>
     <button @click="log">Log</button>
-    <f7-list>
+    <!-- <f7-list>
       <f7-list-item title="Fruit" smart-select :smart-select-params="{openIn: 'sheet'}">
         <select name="fruits" v-model="chooseFruit">
           <option
@@ -115,8 +115,8 @@
           >{{fruit.toUpperCase()[0]+fruit.slice(1)}}</option>
         </select>
       </f7-list-item>
-    </f7-list>
-    <test :fruitList="fruitList"></test>
+    </f7-list>-->
+    <fruit :fruitList="fruitList" @showFruit="receiveFruit"></fruit>
 
     <f7-list media-list>
       <f7-list-item
@@ -125,7 +125,6 @@
         :title="item.title"
         subtitle="Beatles"
       >
-        <!-- <img slot="media" :src="item.img_src" width="44"> -->
         <img slot="media" :src="item.img_src" width="44">
       </f7-list-item>
     </f7-list>
@@ -152,11 +151,11 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import test from "./test";
+import fruit from "./fruit";
 var pickerDevice;
 export default {
   components: {
-    test
+    fruit
   },
   computed: mapGetters(["evenOrOdd"]),
   data() {
@@ -200,12 +199,16 @@ export default {
     },
     reinit() {
       console.log("reinit");
+    },
+    receiveFruit(data) {
+      console.log(`chooseFruit : ${data}`);
     }
   },
   beforeRouteUpdate(to, from, next) {
     console.log("beforeRouteUpdate");
     next();
   },
+
   mounted() {
     this.$f7ready(f7 => {
       // Call F7 APIs here

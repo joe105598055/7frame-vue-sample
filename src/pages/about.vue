@@ -1,5 +1,11 @@
 <template>
-  <f7-page name="about">
+  <f7-page
+    name="about"
+    title="about"
+    @page:reinit="reinit"
+    @page:beforeremove="beforeremove"
+    @page:afterout="afterout"
+  >
     <f7-navbar title="About" back-link="Back"></f7-navbar>
     <f7-block-title>About My App</f7-block-title>
     <f7-block strong>
@@ -11,18 +17,39 @@
       <p>Molestias et distinctio porro nesciunt ratione similique, magni doloribus, rerum nobis, aliquam quae reiciendis quasi modi. Nam a recusandae, fugiat in ea voluptates fuga eius, velit corrupti reprehenderit dignissimos consequatur!</p>
       <p>Blanditiis, cumque quo adipisci. Molestiae, dolores dolorum quos doloremque ipsa ullam eligendi commodi deserunt doloribus inventore magni? Ea mollitia veniam nostrum nihil, iusto doloribus a at! Ea molestiae ullam delectus!</p>
     </f7-block>
+    <f7-block>
+      <f7-link href="/form/">Go Form</f7-link>
+      <f7-button @click="sendData">Send Data</f7-button>
+    </f7-block>
   </f7-page>
 </template>
 
 <script>
-  export default {
-    data: function () {
-      return {
-      };
+export default {
+  data: function() {
+    return {};
+  },
+  mounted() {
+    // console.log(`[About Mounted]`);
+  },
+  destroyed() {
+    // console.log("[About Destroyed]");
+  },
+  methods: {
+    sendData() {
+      console.log("sendData");
+      this.$root.$emit("eventing", "hello");
     },
-    mounted(){
-      console.log(`8888`)
+    reinit(el) {
+      // console.log(`[About] reinit`);
+    },
+    beforeremove() {
+      // console.log(`[About] beforeremove`);
+    },
+    afterout() {
+      // console.log(`[About] afterout`);
     }
-  };
+  }
+};
 </script>
 

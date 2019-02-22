@@ -8,36 +8,30 @@
         label="Name"
         type="text"
         placeholder="Your name"
+        :value="name"
+        @input="name=$event.target.value"
       ></f7-list-input>
 
       <f7-list-input
         label="E-mail"
         type="email"
         placeholder="E-mail"
+        :value="email"
+        @input="email=$event.target.value"
       ></f7-list-input>
 
-      <f7-list-input
-        label="URL"
-        type="url"
-        placeholder="URL"
-      ></f7-list-input>
+      <f7-list-input label="URL" type="url" placeholder="URL"></f7-list-input>
 
-      <f7-list-input
-        label="Password"
-        type="password"
-        placeholder="Password"
-      ></f7-list-input>
+      <f7-list-input label="Password" type="password" placeholder="Password"></f7-list-input>
 
-      <f7-list-input
-        label="Phone"
-        type="tel"
-        placeholder="Phone"
-      ></f7-list-input>
+      <f7-list-input label="Phone" type="tel" placeholder="Phone"></f7-list-input>
 
       <f7-list-input
         label="Gender"
         type="select"
-        >
+        :value="gender"
+        @input="gender=$event.target.value"
+      >
         <option>Male</option>
         <option>Female</option>
       </f7-list-input>
@@ -49,31 +43,25 @@
         defaultValue="2014-04-30"
       ></f7-list-input>
 
-      <f7-list-item
-        title="Toggle"
-      >
-        <f7-toggle slot="after"></f7-toggle>
+      <f7-list-item title="Toggle">
+        <f7-toggle slot="after" @change="toggle=$event.target.checked"></f7-toggle>
       </f7-list-item>
 
-      <f7-list-input
-        label="Range"
-        :input="false"
-      >
-        <f7-range slot="input" :value="50" :min="0" :max="100" :step="1"></f7-range>
+      <f7-list-input label="Range" :input="false">
+        <f7-range
+          slot="input"
+          :value="range"
+          :min="0"
+          :max="100"
+          :step="1"
+          @range:change="changeRang"
+        ></f7-range>
       </f7-list-input>
 
-      <f7-list-input
-        type="textarea"
-        label="Textarea"
-        placeholder="Bio"
-      ></f7-list-input>
-      <f7-list-input
-        type="textarea"
-        label="Resizable"
-        placeholder="Bio"
-        resizable
-      ></f7-list-input>
+      <f7-list-input type="textarea" label="Textarea" placeholder="Bio"></f7-list-input>
+      <f7-list-input type="textarea" label="Resizable" placeholder="Bio" resizable></f7-list-input>
     </f7-list>
+    <f7-button fill @click="submit">Submit</f7-button>
 
     <f7-block-title>Buttons</f7-block-title>
     <f7-block strong>
@@ -113,51 +101,51 @@
 
     <f7-block-title>Checkbox group</f7-block-title>
     <f7-list>
-      <f7-list-item
-        checkbox
-        name="my-checkbox"
-        value="Books"
-        title="Books"
-      ></f7-list-item>
-      <f7-list-item
-        checkbox
-        name="my-checkbox"
-        value="Movies"
-        title="Movies"
-      ></f7-list-item>
-      <f7-list-item
-        checkbox
-        name="my-checkbox"
-        value="Food"
-        title="Food"
-      ></f7-list-item>
+      <f7-list-item checkbox name="my-checkbox" value="Books" title="Books"></f7-list-item>
+      <f7-list-item checkbox name="my-checkbox" value="Movies" title="Movies"></f7-list-item>
+      <f7-list-item checkbox name="my-checkbox" value="Food" title="Food"></f7-list-item>
     </f7-list>
 
     <f7-block-title>Radio buttons group</f7-block-title>
     <f7-list>
-      <f7-list-item
-        radio
-        name="radio"
-        value="Books"
-        title="Books"
-      ></f7-list-item>
-      <f7-list-item
-        radio
-        name="radio"
-        value="Movies"
-        title="Movies"
-      ></f7-list-item>
-      <f7-list-item
-        radio
-        name="radio"
-        value="Food"
-        title="Food"
-      ></f7-list-item>
+      <f7-list-item radio name="radio" value="Books" title="Books"></f7-list-item>
+      <f7-list-item radio name="radio" value="Movies" title="Movies"></f7-list-item>
+      <f7-list-item radio name="radio" value="Food" title="Food"></f7-list-item>
     </f7-list>
   </f7-page>
 </template>
 <script>
 export default {
-  
-}
+  data() {
+    return {
+      name: "",
+      email: "",
+      gender: "",
+      toggle: "",
+      range: 50
+    };
+  },
+  mounted() {
+    console.log(`[setting]`);
+  },
+  methods: {
+    submit() {
+      this.$f7.dialog.alert(
+        "Uesrname: " +
+          this.name +
+          "<br>email: " +
+          this.email +
+          "<br>Gender: " +
+          this.gender +
+          "<br>Toggle: " +
+          this.toggle +
+          "<br>Range: " +
+          this.range
+      );
+    },
+    changeRang(value) {
+      this.range = value;
+    }
+  }
+};
 </script>

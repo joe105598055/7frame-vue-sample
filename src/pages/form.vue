@@ -1,7 +1,9 @@
 <template>
   <f7-page name="form">
     <f7-navbar title="Form" back-link="Back"></f7-navbar>
-
+  <f7-block>
+      <f7-link href="/about/">Go About</f7-link>
+    </f7-block>
     <f7-block-title>Form Example</f7-block-title>
     <f7-list no-hairlines-md>
       <f7-list-input label="Name" type="text" placeholder="Your name"></f7-list-input>
@@ -104,6 +106,12 @@ export default {
       checkmodel:[]
     };
   },
+  mounted(){
+    console.log('[form mounted]')
+  },
+  destroyed(){
+    console.log(`[form destroyed]`)
+  },
   methods:{
     submit(){
       // console.log(this.date)
@@ -116,11 +124,6 @@ export default {
       if(!el.target.checked){
         this.checkmodel.splice( this.checkmodel.indexOf(el.target.value), 1 );
       }
-    }
-  },
-  watch: {
-    checkmodel: val => {
-      console.log("watch");
     }
   }
 };

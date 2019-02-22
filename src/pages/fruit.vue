@@ -2,7 +2,7 @@
 <template>
   <f7-list>
     <f7-list-item title="Fruit" smart-select :smart-select-params="{openIn: 'sheet'}">
-      <select name="fruits" v-model="chooseFruit">
+      <select name="fruits" v-model="chooseFruit" @change="sendData">
         <option
           v-for="(fruit,index) in fruitList"
           :value="fruit"
@@ -20,6 +20,12 @@ export default {
         return{
             chooseFruit:''
         }
+    },
+    methods:{
+      sendData(){
+        console.log(this.chooseFruit)
+        this.$emit('showFruit',this.chooseFruit)
+      }
     }
 }
 </script>

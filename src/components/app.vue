@@ -46,18 +46,38 @@
           icon-md="material:copyright"
           text="Settings"
         ></f7-link>
+
+        <f7-link
+          tab-link="#view-steps"
+          icon-ios="f7:settings_fill"
+          icon-md="material:book"
+          text="Steps"
+        ></f7-link>
+
       </f7-toolbar>
 
       <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
-      <f7-view id="view-home" main tab tab-active url="/"></f7-view>
+      <f7-view
+        v-on:storeData="storeData"
+        @tab:hide="homeHide"
+        id="view-home"
+        main
+        tab
+        tab-active
+        url="/"
+      ></f7-view>
 
       <!-- Catalog View -->
       <f7-view id="view-catalog" name="catalog" tab url="/catalog/"></f7-view>
 
       <!-- Settings View -->
       <f7-view id="view-settings" name="settings" tab url="/settings/"></f7-view>
-    </f7-views>
 
+
+      <f7-view id="view-steps" name="steps" tab url="/steps/"></f7-view>
+
+
+    </f7-views>
     <!-- Popup -->
     <!-- <f7-popup id="my-popup">
     <f7-view>
@@ -163,11 +183,20 @@ export default {
       this.$f7.dialog.alert(
         "Uesrname: " + this.username + "<br>Password: " + this.password
       );
+    },
+    homeHide() {
+      console.log(`homeHide`);
+    },
+    storeData() {
+      console.log("storeData!!");
     }
   },
   mounted() {
     this.$f7ready(f7 => {
       // Call F7 APIs here
+    });
+    this.$root.$on("eventing", data => {
+      console.log(`Home : ${data}`);
     });
   }
 };

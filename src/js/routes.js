@@ -5,6 +5,11 @@ import FormPage from '../pages/form.vue';
 import CatalogPage from '../pages/catalog.vue';
 import ProductPage from '../pages/product.vue';
 import SettingsPage from '../pages/settings.vue';
+import StepsPage from '../pages/steps.vue'
+import Step1Page from '../pages/step1.vue'
+import Step2Page from '../pages/step2.vue'
+
+
 
 import DynamicRoutePage from '../pages/dynamic-route.vue';
 import RequestAndLoad from '../pages/request-and-load.vue';
@@ -18,6 +23,7 @@ var routes = [
   {
     path: '/about/',
     component: AboutPage,
+    reloadCurrent: true
   },
   {
     path: '/form/',
@@ -26,6 +32,18 @@ var routes = [
   {
     path: '/catalog/',
     component: CatalogPage,
+  },
+  {
+    path: '/steps/',
+    component: StepsPage,
+  },
+  {
+    path: '/step1/',
+    component: Step1Page,
+  },
+  {
+    path: '/step2/',
+    component: Step2Page,
   },
   {
     path: '/product/:id/',
