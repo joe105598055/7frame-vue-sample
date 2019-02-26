@@ -18,12 +18,12 @@ import NotFoundPage from '../pages/404.vue';
 var routes = [
   {
     path: '/',
+    // url: 'index.html',
     component: HomePage,
   },
   {
     path: '/about/',
-    component: AboutPage,
-    reloadCurrent: true
+    component: AboutPage
   },
   {
     path: '/form/',
@@ -53,7 +53,6 @@ var routes = [
     path: '/settings/',
     component: SettingsPage,
   },
-
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
     component: DynamicRoutePage,

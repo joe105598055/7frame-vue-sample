@@ -20,14 +20,20 @@
     <f7-block>
       <f7-link href="/form/">Go Form</f7-link>
       <f7-button @click="sendData">Send Data</f7-button>
+      <f7-button :route-props="obj" target="/form/" href="/form/">Target</f7-button>
+
     </f7-block>
   </f7-page>
-</template>
+</template> 
 
 <script>
 export default {
   data: function() {
-    return {};
+    return {
+      obj:{
+        text:'hello'
+      }
+    };
   },
   mounted() {
     // console.log(`[About Mounted]`);

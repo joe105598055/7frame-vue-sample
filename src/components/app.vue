@@ -27,7 +27,7 @@
     <f7-views tabs class="safe-areas">
       <!-- Tabbar for switching views-tabs -->
       <f7-toolbar tabbar labels bottom>
-        <f7-link
+        <f7-link 
           tab-link="#view-home"
           tab-link-active
           icon-ios="f7:home_fil"
@@ -49,9 +49,9 @@
 
         <f7-link
           tab-link="#view-steps"
-          icon-ios="f7:settings_fill"
-          icon-md="material:book"
-          text="Steps"
+          icon-ios="f7:document_chart"
+          icon-md="material:bar_chart"
+          text="Chart"
         ></f7-link>
 
       </f7-toolbar>

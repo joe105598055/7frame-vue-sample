@@ -93,13 +93,14 @@
       <f7-list-item radio name="radio" value="Movies" title="Movies"></f7-list-item>
       <f7-list-item radio name="radio" value="Food" title="Food"></f7-list-item>
       <f7-block>
-        <f7-button class="col" fill color="green" @click="submit">Submit</f7-button>
+        <f7-button class="col" reload-all fill color="green" @click="submit" href="/">Submit</f7-button>
       </f7-block>
     </f7-list>
   </f7-page>
 </template>
 <script>
 export default {
+  props:['obj'],
   data() {
     return {
       date: null,
@@ -125,6 +126,6 @@ export default {
         this.checkmodel.splice( this.checkmodel.indexOf(el.target.value), 1 );
       }
     }
-  }
+  },
 };
 </script>
